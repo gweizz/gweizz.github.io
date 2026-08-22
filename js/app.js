@@ -30,14 +30,17 @@ const App = {
     }
   },
 
+  isMobileMenuOpen: false,
+
   init() {
     this.state.init();
     this.setupNavigation();
     this.renderActiveView();
 
-    // Fecha modais com ESC
+    // Fecha modais e menu mobile com ESC
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
+        this.closeMobileMenu();
         SheetModal.close();
         AdminModal.close();
       }
@@ -49,6 +52,8 @@ const App = {
   setupNavigation() {
     const navStandings = document.getElementById('navStandings');
     const navStages = document.getElementById('navStages');
+    const navHamburgerBtn = document.getElementById('navHamburgerBtn');
+    const mobileNavBackdrop = document.getElementById('mobileNavBackdrop');
 
     if (navStandings) {
       navStandings.addEventListener('click', () => this.switchView('standings'));
@@ -56,17 +61,86 @@ const App = {
     if (navStages) {
       navStages.addEventListener('click', () => this.switchView('stages'));
     }
+    if (navHamburgerBtn) {
+      navHamburgerBtn.addEventListener('click', () => this.toggleMobileMenu());
+    }
+    if (mobileNavBackdrop) {
+      mobileNavBackdrop.addEventListener('click', () => this.closeMobileMenu());
+    }
+
+    // Fecha o menu mobile se a tela for redimensionada para desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && this.isMobileMenuOpen) {
+        this.closeMobileMenu();
+      }
+    });
+  },
+
+  toggleMobileMenu() {
+    if (this.isMobileMenuOpen) {
+      this.closeMobileMenu();
+    } else {
+      this.openMobileMenu();
+    }
+  },
+
+  openMobileMenu() {
+    this.isMobileMenuOpen = true;
+    const btn = document.getElementById('navHamburgerBtn');
+    const menu = document.getElementById('mobileNavMenu');
+    const backdrop = document.getElementById('mobileNavBackdrop');
+
+    if (btn) {
+      btn.classList.add('active');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+    if (menu) {
+      menu.classList.add('open');
+      menu.setAttribute('aria-hidden', 'false');
+    }
+    if (backdrop) {
+      backdrop.classList.add('open');
+    }
+  },
+
+  closeMobileMenu() {
+    this.isMobileMenuOpen = false;
+    const btn = document.getElementById('navHamburgerBtn');
+    const menu = document.getElementById('mobileNavMenu');
+    const backdrop = document.getElementById('mobileNavBackdrop');
+
+    if (btn) {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    if (menu) {
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden', 'true');
+    }
+    if (backdrop) {
+      backdrop.classList.remove('open');
+    }
   },
 
   switchView(viewName) {
     this.activeView = viewName;
 
-    // Atualiza botões do navbar
+    // Atualiza botões do navbar desktop
     const navStandings = document.getElementById('navStandings');
     const navStages = document.getElementById('navStages');
 
     if (navStandings) navStandings.classList.toggle('active', viewName === 'standings');
     if (navStages) navStages.classList.toggle('active', viewName === 'stages');
+
+    // Atualiza botões do menu mobile
+    const mobStandings = document.getElementById('mobileNavStandings');
+    const mobStages = document.getElementById('mobileNavStages');
+
+    if (mobStandings) mobStandings.classList.toggle('active', viewName === 'standings');
+    if (mobStages) mobStages.classList.toggle('active', viewName === 'stages');
+
+    // Fecha o menu mobile se estiver aberto
+    this.closeMobileMenu();
 
     // Alterna visibilidade dos containers
     const standingsContainer = document.getElementById('standingsViewContainer');
@@ -108,6 +182,7 @@ const App = {
   },
 
   openAdminModal(categoryId = 'g1', roundId = null) {
+    this.closeMobileMenu();
     AdminModal.open(categoryId || this.activeCategory, roundId);
   },
 

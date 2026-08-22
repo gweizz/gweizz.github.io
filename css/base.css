@@ -225,6 +225,241 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffffff;
 }
 
+/* Hamburger Toggle Button (Mobile) */
+.nav-hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-hamburger-btn:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-strong);
+}
+
+.nav-hamburger-btn:active {
+  transform: scale(0.96);
+}
+
+.hamburger-line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: var(--text-primary);
+  border-radius: 1px;
+  transition: transform 0.22s ease, opacity 0.22s ease;
+}
+
+/* Hamburger Animated 'X' State */
+.nav-hamburger-btn.active .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-hamburger-btn.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav-hamburger-btn.active .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Navigation Backdrop Overlay */
+.mobile-nav-backdrop {
+  display: none;
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 13, 18, 0.72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 98;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.mobile-nav-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Mobile Navigation Dropdown Menu */
+.mobile-nav-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-medium);
+  box-shadow: var(--shadow-lg);
+  z-index: 99;
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+}
+
+.mobile-nav-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-nav-content {
+  padding: 14px var(--container-padding-mobile) 16px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobile-nav-section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  padding: 2px 4px;
+}
+
+.mobile-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  text-align: left;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.mobile-nav-btn:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-medium);
+  color: var(--text-primary);
+}
+
+.mobile-nav-btn.active {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-medium);
+  border-left: 3px solid var(--accent-gold-soft);
+  color: #ffffff;
+}
+
+.mobile-nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.mobile-nav-btn:hover .mobile-nav-icon {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.mobile-nav-btn.active .mobile-nav-icon {
+  background: rgba(217, 119, 6, 0.15);
+  color: var(--accent-gold-soft);
+}
+
+.mobile-nav-icon.admin-icon {
+  background: rgba(37, 99, 235, 0.12);
+  color: #60a5fa;
+}
+
+.mobile-nav-btn-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.mobile-nav-btn-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.mobile-nav-btn-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.mobile-nav-chevron {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.mobile-nav-btn:hover .mobile-nav-chevron,
+.mobile-nav-btn.active .mobile-nav-chevron {
+  opacity: 0.9;
+  transform: translateX(2px);
+}
+
+.mobile-nav-divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 4px 0;
+}
+
+.mobile-nav-admin-btn {
+  background: rgba(37, 99, 235, 0.06);
+  border-color: rgba(37, 99, 235, 0.22);
+}
+
+.mobile-nav-admin-btn:hover {
+  background: rgba(37, 99, 235, 0.14);
+  border-color: rgba(37, 99, 235, 0.38);
+  color: #ffffff;
+}
+
+.mobile-nav-footer {
+  margin-top: 6px;
+  padding: 4px;
+  display: flex;
+  justify-content: center;
+}
+
+.mobile-nav-season-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
 /* ==========================================================================
    HERO SECTION (Editorial Motorsport Header)
    ========================================================================== */
@@ -319,6 +554,23 @@ h1, h2, h3, h4, h5, h6 {
     height: var(--header-height-mobile);
   }
 
+  .nav-links {
+    display: none !important;
+  }
+
+  .nav-hamburger-btn {
+    display: flex;
+  }
+
+  .mobile-nav-backdrop,
+  .mobile-nav-menu {
+    display: block;
+  }
+
+  .mobile-nav-backdrop {
+    top: var(--header-height-mobile);
+  }
+
   .brand-logo-img {
     height: 36px;
   }
@@ -380,18 +632,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.58rem;
   }
 
-  .nav-btn {
-    padding: 6px 8px;
-    font-size: 0.78rem;
-    gap: 5px;
-  }
-
-  .btn-admin {
-    padding: 6px 8px;
-    font-size: 0.78rem;
-    gap: 5px;
-  }
-
   /* Prevent iOS auto-zoom on input focus */
   input, select, textarea {
     font-size: 16px;
@@ -400,17 +640,14 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 440px) {
   .brand-text h1 {
-    font-size: 0.76rem;
+    font-size: 0.78rem;
     letter-spacing: 0;
   }
 
-  .nav-btn span,
-  .btn-admin span {
-    font-size: 0.74rem;
-  }
-
-  .nav-btn,
-  .btn-admin {
-    padding: 6px 7px;
+  .nav-hamburger-btn {
+    width: 38px;
+    height: 38px;
+    padding: 7px;
   }
 }
+

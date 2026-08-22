@@ -216,7 +216,7 @@
   border: 1px solid var(--border-medium);
   color: var(--text-secondary);
   font-size: 0.78rem;
-  padding: 3px 8px;
+  padding: 5px 10px;
   border-radius: var(--radius-xs);
   cursor: pointer;
   display: inline-flex;
@@ -229,8 +229,124 @@
   border-color: var(--border-strong);
 }
 
+.admin-action-bar {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-backup-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES (Mobile & Tablet)
+   ========================================================================== */
 @media (max-width: 900px) {
   .ocr-result-workspace {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-modal-container {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    border: none;
+  }
+
+  .admin-modal-header {
+    padding: 12px 16px;
+  }
+
+  .admin-modal-title {
+    font-size: 0.94rem;
+  }
+
+  .admin-modal-body {
+    padding: 14px;
+  }
+
+  .ocr-config-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .upload-dropzone {
+    padding: 18px 12px;
+  }
+
+  .dropzone-title {
+    font-size: 0.88rem;
+  }
+
+  .dropzone-subtitle {
+    font-size: 0.74rem;
+  }
+
+  .sample-images-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sample-badge-btn {
+    justify-content: center;
+    padding: 8px 12px;
+  }
+
+  .review-table th,
+  .review-table td {
+    padding: 6px 4px;
+  }
+
+  .input-pos {
+    width: 44px;
+    height: 38px;
+    font-size: 16px;
+  }
+
+  .input-obs {
+    width: 64px;
+    height: 38px;
+    font-size: 16px;
+  }
+
+  .admin-action-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .admin-backup-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .admin-backup-group .btn-secondary,
+  .admin-backup-group .btn-danger {
+    justify-content: center;
+    padding: 8px 10px;
+    font-size: 0.78rem;
+  }
+
+  .admin-backup-group .btn-danger {
+    grid-column: span 2;
+  }
+
+  .admin-action-bar .btn-primary {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 16px;
   }
 }

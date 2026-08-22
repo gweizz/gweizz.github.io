@@ -228,8 +228,8 @@ const AdminModal = {
       </div>
 
       <!-- Database Management & Actions Bar -->
-      <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <div class="admin-action-bar">
+        <div class="admin-backup-group">
           <button class="btn-secondary" onclick="App.exportBackup()">
             ${Icons.download(14)}
             <span>Exportar Backup</span>

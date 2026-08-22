@@ -110,6 +110,21 @@
   overflow-x: auto;
   flex: 1;
   background: #0a0d13;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sheet-mobile-scroll-hint {
+  display: none;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  color: #93c5fd;
+  padding: 8px 12px;
+  border-radius: var(--radius-xs);
+  font-size: 0.76rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  align-items: center;
+  gap: 8px;
 }
 
 /* ==========================================================================
@@ -308,4 +323,70 @@
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
+  gap: 10px;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES (Mobile & Tablet)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .modal-backdrop {
+    padding: 0;
+  }
+
+  .sheet-modal-container {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    border: none;
+  }
+
+  .sheet-modal-header {
+    padding: 10px 14px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .sheet-modal-title-group {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .sheet-modal-title-group h3 {
+    font-size: 0.92rem;
+  }
+
+  .sheet-category-pills {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sheet-cat-pill {
+    padding: 6px 4px;
+    text-align: center;
+    font-size: 0.76rem;
+  }
+
+  .sheet-modal-body {
+    padding: 10px;
+  }
+
+  .sheet-mobile-scroll-hint {
+    display: flex;
+  }
+
+  .sheet-modal-footer {
+    padding: 10px 14px;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .sheet-modal-footer .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
 }

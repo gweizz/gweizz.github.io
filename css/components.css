@@ -5,29 +5,30 @@
 
 /* Category Tabs (Segmented Control) */
 .category-tabs-container {
-  margin: 16px 0 20px;
+  margin: 14px 0 18px;
   background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 4px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 4px;
 }
 
 .category-tab {
-  flex: 1;
-  padding: 10px 16px;
+  padding: 9px 12px;
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  font-size: 0.92rem;
+  gap: 8px;
+  font-size: 0.88rem;
   font-weight: 700;
   letter-spacing: 0.01em;
   color: var(--text-secondary);
   background: transparent;
   border: 1px solid transparent;
+  transition: all var(--transition-fast);
 }
 
 .category-tab:hover {
@@ -36,12 +37,13 @@
 }
 
 .category-tab .tab-tag {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
   padding: 2px 6px;
   border-radius: var(--radius-xs);
   background: rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
 }
 
 /* Category Active States */
@@ -75,14 +77,15 @@
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 12px 18px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+  gap: 12px;
 }
 
 .heat-badge-tag {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 600;
   color: var(--text-secondary);
 }
@@ -101,9 +104,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
 }
 
 .view-toggle-group {
@@ -116,14 +119,15 @@
 }
 
 .view-toggle-btn {
-  padding: 6px 14px;
+  padding: 7px 14px;
   border-radius: var(--radius-xs);
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   font-weight: 600;
   color: var(--text-secondary);
   display: flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
 }
 
 .view-toggle-btn:hover {
@@ -148,11 +152,12 @@
   color: var(--text-primary);
   padding: 7px 14px;
   border-radius: var(--radius-sm);
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
 }
 
 .btn-secondary:hover {
@@ -165,12 +170,13 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #ffffff;
   font-weight: 600;
-  padding: 8px 18px;
+  padding: 8px 16px;
   border-radius: var(--radius-sm);
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
 }
 
 .btn-primary:hover {
@@ -184,10 +190,11 @@
   padding: 7px 14px;
   border-radius: var(--radius-sm);
   font-weight: 600;
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
 }
 
 .btn-danger:hover {
@@ -201,34 +208,35 @@
 .leaderboard-summary {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-bottom: 24px;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
 .leader-item {
   background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 14px 16px;
+  padding: 12px 14px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   position: relative;
   overflow: hidden;
 }
 
 .leader-item.rank-1 {
   border-color: rgba(217, 119, 6, 0.4);
-  background: linear-gradient(90deg, rgba(217, 119, 6, 0.06) 0%, var(--bg-secondary) 100%);
+  background: linear-gradient(90deg, rgba(217, 119, 6, 0.08) 0%, var(--bg-secondary) 100%);
 }
 
 .leader-rank-num {
   font-family: var(--font-mono);
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 800;
   color: var(--text-muted);
-  width: 28px;
+  width: 24px;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .rank-1 .leader-rank-num {
@@ -241,7 +249,7 @@
 }
 
 .leader-name {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--text-primary);
   white-space: nowrap;
@@ -253,9 +261,12 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: var(--text-secondary);
   margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .leader-score {
@@ -265,14 +276,14 @@
 
 .leader-score-num {
   font-family: var(--font-mono);
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: var(--text-primary);
   line-height: 1;
 }
 
 .leader-score-label {
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
   color: var(--text-muted);
   font-weight: 600;
@@ -287,20 +298,21 @@
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   overflow: hidden;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .table-header-bar {
-  padding: 12px 18px;
+  padding: 12px 16px;
   background: var(--bg-table-header);
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
 
 .table-header-title {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -309,14 +321,16 @@
 }
 
 .table-season-tag {
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   font-weight: 600;
   color: var(--text-muted);
+  flex-shrink: 0;
 }
 
 .table-responsive {
   width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .standings-table {
@@ -327,7 +341,7 @@
 
 .standings-table th {
   background: var(--bg-table-header);
-  padding: 10px 16px;
+  padding: 10px 14px;
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -338,8 +352,8 @@
 }
 
 .standings-table td {
-  padding: 11px 16px;
-  font-size: 0.9rem;
+  padding: 10px 14px;
+  font-size: 0.88rem;
   border-bottom: 1px solid var(--border-subtle);
   vertical-align: middle;
 }
@@ -355,7 +369,7 @@
 .pos-cell {
   font-family: var(--font-mono);
   font-weight: 700;
-  width: 50px;
+  width: 48px;
   color: var(--text-muted);
   text-align: center;
 }
@@ -370,6 +384,27 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
+}
+
+.driver-primary-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.driver-name-text {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.driver-sub-team {
+  display: none; /* Ativado no mobile via media query */
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  font-weight: 500;
 }
 
 .team-cell {
@@ -377,7 +412,13 @@
   align-items: center;
   gap: 8px;
   color: var(--text-secondary);
-  font-size: 0.88rem;
+  font-size: 0.86rem;
+}
+
+.team-primary-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .team-color-swatch {
@@ -391,9 +432,18 @@
 .points-cell {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   color: var(--text-primary);
   text-align: right;
+  white-space: nowrap;
+}
+
+.discard-cell {
+  text-align: right;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .mv-badge {
@@ -404,9 +454,9 @@
   background: rgba(37, 99, 235, 0.15);
   border: 1px solid rgba(37, 99, 235, 0.35);
   color: #93c5fd;
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 700;
-  margin-left: 6px;
+  margin-left: 4px;
 }
 
 /* Tooltip */
@@ -476,28 +526,34 @@
 .stages-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-top: 8px;
+  gap: 14px;
+  margin-top: 6px;
 }
 
 .season-filter-bar {
   background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 10px 16px;
+  padding: 10px 14px;
   display: flex;
   align-items: center;
   gap: 12px;
-  flex-wrap: wrap;
 }
 
 .season-filter-title {
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   font-weight: 700;
   color: var(--text-secondary);
   display: flex;
   align-items: center;
   gap: 6px;
+  flex-shrink: 0;
+}
+
+.season-pills-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .season-pill-btn {
@@ -506,11 +562,12 @@
   background: var(--bg-surface);
   border: 1px solid var(--border-medium);
   color: var(--text-secondary);
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   font-weight: 600;
   display: flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
 }
 
 .season-pill-btn.active {
@@ -523,16 +580,16 @@
   background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 20px 24px;
+  padding: 18px 22px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 14px;
 }
 
 .season-title {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 4px;
@@ -540,7 +597,7 @@
 
 .season-meta {
   color: var(--text-muted);
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
@@ -548,16 +605,16 @@
 
 .stages-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 14px;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .stage-card {
   background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 16px;
+  padding: 14px 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -574,8 +631,8 @@
 }
 
 .stage-number-box {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   background: var(--bg-surface);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-xs);
@@ -584,17 +641,18 @@
   align-items: center;
   justify-content: center;
   line-height: 1;
+  flex-shrink: 0;
 }
 
 .stage-num {
   font-family: var(--font-mono);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 800;
   color: var(--text-primary);
 }
 
 .stage-sub {
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   text-transform: uppercase;
   color: var(--text-muted);
   font-weight: 700;
@@ -602,25 +660,30 @@
 
 .stage-header-details {
   flex: 1;
+  min-width: 0;
 }
 
 .stage-date {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--text-primary);
 }
 
 .stage-location {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .stage-status-badge {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 600;
   text-transform: uppercase;
   padding: 2px 8px;
   border-radius: var(--radius-xs);
+  flex-shrink: 0;
 }
 
 .stage-status-badge.completed {
@@ -644,7 +707,7 @@
 .heat-schedule-info {
   background: var(--bg-primary);
   border-radius: var(--radius-xs);
-  padding: 10px 12px;
+  padding: 9px 12px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -655,15 +718,16 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
 }
 
 .heat-chip {
   padding: 1px 6px;
   border-radius: var(--radius-xs);
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 700;
   font-family: var(--font-mono);
+  flex-shrink: 0;
 }
 
 .g1-chip {
@@ -693,9 +757,9 @@
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
-  padding: 7px 10px;
+  padding: 8px 10px;
   border-radius: var(--radius-xs);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -729,7 +793,7 @@
   align-items: center;
   gap: 10px;
   color: var(--text-primary);
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   min-width: 260px;
 }
 
@@ -737,12 +801,206 @@
 .toast.error { border-left: 3px solid var(--accent-red); }
 .toast.info { border-left: 3px solid var(--accent-blue); }
 
-/* Responsive adjustments */
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE OVERRIDES
+   ========================================================================== */
 @media (max-width: 768px) {
   .category-tabs-container {
-    flex-direction: column;
+    gap: 3px;
+    padding: 3px;
   }
+
+  .category-tab {
+    padding: 8px 6px;
+    font-size: 0.8rem;
+    gap: 6px;
+  }
+
+  .category-tab .tab-tag {
+    font-size: 0.62rem;
+    padding: 1px 4px;
+  }
+
   .leaderboard-summary {
     grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .leader-item {
+    padding: 10px 12px;
   }
 }
+
+@media (max-width: 640px) {
+  /* Category Tabs */
+  .category-tabs-container {
+    margin: 10px 0 14px;
+  }
+
+  .category-tab {
+    flex-direction: column;
+    gap: 3px;
+    padding: 7px 4px;
+    text-align: center;
+  }
+
+  .category-tab span:not(.tab-tag) {
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  /* Heat Banner */
+  .heat-banner {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .heat-badge-tag {
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+
+  .heat-banner .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 9px 12px;
+  }
+
+  /* View Controls */
+  .view-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .view-toggle-group {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .view-toggle-btn {
+    justify-content: center;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+  }
+
+  .view-actions {
+    width: 100%;
+  }
+
+  .view-actions .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 9px 12px;
+  }
+
+  /* Standings Table Mobile Optimization */
+  .table-card {
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+  }
+
+  .table-header-bar {
+    padding: 10px 12px;
+  }
+
+  .table-header-title {
+    font-size: 0.84rem;
+  }
+
+  .standings-table th {
+    padding: 8px 8px;
+    font-size: 0.66rem;
+  }
+
+  .standings-table td {
+    padding: 8px 8px;
+    font-size: 0.82rem;
+  }
+
+  .pos-cell {
+    width: 32px;
+    font-size: 0.8rem;
+    padding: 8px 4px !important;
+  }
+
+  /* Show Team below Driver name in mobile to save space */
+  .driver-sub-team {
+    display: flex;
+  }
+
+  /* Hide separate standalone Team column in mobile driver view */
+  .standings-table .col-team-standalone {
+    display: none;
+  }
+
+  .points-cell {
+    font-size: 0.94rem;
+    padding-right: 8px !important;
+  }
+
+  .discard-cell {
+    font-size: 0.82rem;
+    padding-right: 8px !important;
+  }
+
+  /* Stages View */
+  .season-filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .season-pills-list {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+  }
+
+  .season-hero-banner {
+    padding: 14px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .season-title {
+    font-size: 1.05rem;
+  }
+
+  .season-meta {
+    font-size: 0.78rem;
+  }
+
+  .season-hero-banner .btn-primary {
+    width: 100%;
+    justify-content: center;
+    padding: 9px 14px;
+  }
+
+  .stages-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  /* Toast Messages */
+  .toast-container {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    min-width: auto;
+  }
+
+  .toast {
+    min-width: auto;
+    width: 100%;
+  }
+}
+

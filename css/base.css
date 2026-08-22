@@ -105,7 +105,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--container-padding);
 }
 
 /* ==========================================================================
@@ -120,6 +120,7 @@ h1, h2, h3, h4, h5, h6 {
   height: var(--header-height);
   display: flex;
   align-items: center;
+  transition: height var(--transition-fast);
 }
 
 .navbar-inner {
@@ -127,16 +128,18 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  gap: 12px;
 }
 
 .brand-logo {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0;
 }
 
 .brand-logo-img {
-  height: 44px;
+  height: 42px;
   width: auto;
   object-fit: contain;
   transition: transform var(--transition-fast);
@@ -147,7 +150,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .brand-text h1 {
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   font-weight: 800;
   letter-spacing: 0.02em;
   color: var(--text-primary);
@@ -173,19 +176,21 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 6px;
+  flex-shrink: 0;
 }
 
 .nav-btn {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
+  gap: 7px;
+  padding: 8px 12px;
   border-radius: var(--radius-sm);
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 600;
   color: var(--text-secondary);
   border: 1px solid transparent;
   background: transparent;
+  white-space: nowrap;
 }
 
 .nav-btn:hover {
@@ -205,12 +210,13 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid var(--border-medium);
   color: var(--text-primary);
   font-weight: 600;
-  font-size: 0.88rem;
-  padding: 8px 14px;
+  font-size: 0.86rem;
+  padding: 8px 12px;
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
+  white-space: nowrap;
 }
 
 .btn-admin:hover {
@@ -223,7 +229,7 @@ h1, h2, h3, h4, h5, h6 {
    HERO SECTION (Editorial Motorsport Header)
    ========================================================================== */
 .hero-section {
-  padding: 24px 0 16px;
+  padding: 20px 0 14px;
 }
 
 .hero-banner-wrapper {
@@ -232,7 +238,7 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 28px 32px;
+  padding: 24px 28px;
 }
 
 .hero-content {
@@ -248,17 +254,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-title-group h2 {
-  font-size: 1.65rem;
+  font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: -0.01em;
   color: #ffffff;
   text-transform: uppercase;
   margin-bottom: 6px;
+  line-height: 1.2;
 }
 
 .hero-title-group p {
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   line-height: 1.5;
 }
 
@@ -285,11 +292,11 @@ h1, h2, h3, h4, h5, h6 {
    ========================================================================== */
 .footer {
   margin-top: auto;
-  padding: 24px 0;
+  padding: 20px 0;
   border-top: 1px solid var(--border-subtle);
   background: var(--bg-secondary);
   color: var(--text-muted);
-  font-size: 0.84rem;
+  font-size: 0.82rem;
 }
 
 .footer-inner {
@@ -300,18 +307,110 @@ h1, h2, h3, h4, h5, h6 {
   gap: 12px;
 }
 
-/* Responsive adjustments */
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES (Mobile & Tablet)
+   ========================================================================== */
 @media (max-width: 768px) {
+  .app-container {
+    padding: 0 var(--container-padding-mobile);
+  }
+
+  .navbar {
+    height: var(--header-height-mobile);
+  }
+
+  .brand-logo-img {
+    height: 36px;
+  }
+
+  .brand-text h1 {
+    font-size: 0.92rem;
+  }
+
+  .brand-badge {
+    font-size: 0.62rem;
+    padding: 1px 5px;
+  }
+
+  .hero-section {
+    padding: 14px 0 10px;
+  }
+
   .hero-banner-wrapper {
-    padding: 20px;
+    padding: 16px 18px;
   }
+
   .hero-title-group h2 {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
   }
-  .nav-btn span {
-    display: none;
+
+  .hero-title-group p {
+    font-size: 0.85rem;
   }
+
   .hero-bg-watermark {
     display: none;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 580px) {
+  .navbar-inner {
+    gap: 8px;
+  }
+
+  .brand-logo {
+    gap: 8px;
+  }
+
+  .brand-logo-img {
+    height: 32px;
+  }
+
+  .brand-text h1 {
+    font-size: 0.84rem;
+  }
+
+  .brand-badge {
+    font-size: 0.58rem;
+  }
+
+  .nav-btn {
+    padding: 6px 8px;
+    font-size: 0.78rem;
+    gap: 5px;
+  }
+
+  .btn-admin {
+    padding: 6px 8px;
+    font-size: 0.78rem;
+    gap: 5px;
+  }
+
+  /* Prevent iOS auto-zoom on input focus */
+  input, select, textarea {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 440px) {
+  .brand-text h1 {
+    font-size: 0.76rem;
+    letter-spacing: 0;
+  }
+
+  .nav-btn span,
+  .btn-admin span {
+    font-size: 0.74rem;
+  }
+
+  .nav-btn,
+  .btn-admin {
+    padding: 6px 7px;
   }
 }

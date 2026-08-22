@@ -47,17 +47,17 @@ const StandingsView = {
       <!-- Category Tabs (Segmented Control) -->
       <div class="category-tabs-container">
         <button class="category-tab ${this.currentCategory === 'g1' ? 'active' : ''}" data-category="g1" onclick="App.selectCategory('g1')">
-          <span class="tab-tag">Bateria 1</span>
+          <span class="tab-tag">Bat. 1</span>
           <span>Categoria G1</span>
         </button>
 
         <button class="category-tab ${this.currentCategory === 'g2' ? 'active' : ''}" data-category="g2" onclick="App.selectCategory('g2')">
-          <span class="tab-tag">Bateria 2</span>
+          <span class="tab-tag">Bat. 2</span>
           <span>Categoria G2</span>
         </button>
 
         <button class="category-tab ${this.currentCategory === 'fl' ? 'active' : ''}" data-category="fl" onclick="App.selectCategory('fl')">
-          <span class="tab-tag">Bateria 2</span>
+          <span class="tab-tag">Bat. 2</span>
           <span>Força Livre</span>
         </button>
       </div>
@@ -70,7 +70,7 @@ const StandingsView = {
         </div>
         <button class="btn-secondary" onclick="SheetModal.open('${this.currentCategory}')">
           ${Icons.table(15)}
-          <span>Ver Planilha Oficial da Etapa</span>
+          <span>Ver Planilha Oficial</span>
         </button>
       </div>
 
@@ -86,14 +86,14 @@ const StandingsView = {
           </button>
           <button class="view-toggle-btn ${this.currentTab === 'teams' ? 'active' : ''}" onclick="StandingsView.setTab('teams')">
             ${Icons.shield(15)}
-            <span>Equipes (C/ Descarte)</span>
+            <span>Equipes</span>
           </button>
         </div>
 
         <div class="view-actions">
           <button class="btn-secondary" onclick="App.openAdminModal('${this.currentCategory}')">
             ${Icons.camera(15)}
-            <span>Lançar Resultado por Foto</span>
+            <span>Lançar por Foto</span>
           </button>
         </div>
       </div>
@@ -103,7 +103,7 @@ const StandingsView = {
         <div class="table-header-bar">
           <div class="table-header-title">
             ${Icons.trophy(16)}
-            <span>${this.currentTab === 'drivers' ? `Classificação Geral de Pilotos — ${category.name}` : `Classificação Geral de Equipes — ${category.name} (Com Descarte)`}</span>
+            <span>${this.currentTab === 'drivers' ? `Classificação de Pilotos — ${category.name}` : `Classificação de Equipes — ${category.name} (C/ Descarte)`}</span>
           </div>
           <span class="table-season-tag">${currentSeason.name}</span>
         </div>
@@ -183,7 +183,7 @@ const StandingsView = {
     let rows = '';
     drivers.forEach(d => {
       const posRankClass = d.position === 1 ? 'pos-top-1' : (d.position === 2 ? 'pos-top-2' : (d.position === 3 ? 'pos-top-3' : ''));
-      const hasMv = d.bestLaps > 0 ? `<span class="mv-badge" title="Melhor Volta na Etapa">${Icons.zap(11)} MV</span>` : '';
+      const hasMv = d.bestLaps > 0 ? `<span class="mv-badge" title="Melhor Volta">${Icons.zap(11)} MV</span>` : '';
       const tooltipText = `Vitórias: ${d.wins} | Pódios: ${d.podiums}${d.bestLaps > 0 ? ` | Melhores Voltas: ${d.bestLaps}` : ''}`;
 
       rows += `
@@ -193,18 +193,26 @@ const StandingsView = {
           </td>
           <td>
             <div class="driver-cell">
-              <span class="driver-name-hover" data-tooltip="${tooltipText}">${d.name}</span>
-              ${hasMv}
+              <div class="driver-primary-info">
+                <div style="display: flex; align-items: center; gap: 4px;">
+                  <span class="driver-name-text driver-name-hover" data-tooltip="${tooltipText}">${d.name}</span>
+                  ${hasMv}
+                </div>
+                <div class="driver-sub-team">
+                  <span class="team-color-swatch" style="background: ${d.teamColor}"></span>
+                  <span>${d.teamName}</span>
+                </div>
+              </div>
             </div>
           </td>
-          <td>
+          <td class="col-team-standalone">
             <div class="team-cell">
               <span class="team-color-swatch" style="background: ${d.teamColor}"></span>
               <span>${d.teamName}</span>
             </div>
           </td>
           <td class="points-cell">${d.totalWithoutDiscard}</td>
-          <td style="text-align: right; color: var(--text-secondary); font-family: var(--font-mono); font-weight: 600;">${d.totalWithDiscard}</td>
+          <td class="discard-cell">${d.totalWithDiscard}</td>
         </tr>
       `;
     });
@@ -213,11 +221,11 @@ const StandingsView = {
       <table class="standings-table">
         <thead>
           <tr>
-            <th style="width: 60px; text-align: center;">Pos</th>
+            <th style="width: 48px; text-align: center;">Pos</th>
             <th>Piloto</th>
-            <th>Equipe</th>
-            <th style="width: 130px; text-align: right;">Pontos Totais</th>
-            <th style="width: 140px; text-align: right;">C/ Descarte</th>
+            <th class="col-team-standalone">Equipe</th>
+            <th style="width: 90px; text-align: right;">Total</th>
+            <th style="width: 100px; text-align: right;">C/ Desc.</th>
           </tr>
         </thead>
         <tbody>
@@ -242,16 +250,23 @@ const StandingsView = {
           <td class="pos-cell ${posRankClass}">
             ${t.position < 10 ? '0' + t.position : t.position}
           </td>
-          <td style="width: 70px; text-align: center; font-weight: 700; font-family: var(--font-mono); color: var(--text-muted);">
+          <td style="width: 50px; text-align: center; font-weight: 700; font-family: var(--font-mono); color: var(--text-muted);" class="col-team-standalone">
             #${t.num}
           </td>
           <td>
             <div class="team-cell">
-              <span class="team-color-swatch" style="background: ${t.color}"></span>
-              <span class="team-name-hover" data-tooltip="${tooltipText}" style="font-weight: 600; color: #fff;">${t.name}</span>
+              <div class="team-primary-info">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="team-color-swatch" style="background: ${t.color}"></span>
+                  <span class="team-name-hover" data-tooltip="${tooltipText}" style="font-weight: 700; color: #fff;">${t.name} <span style="color: var(--text-muted); font-size: 0.76rem; font-weight: 600;">#${t.num}</span></span>
+                </div>
+                <div style="font-size: 0.76rem; color: var(--text-secondary); margin-top: 2px;">
+                  ${t.drivers.join(' • ')}
+                </div>
+              </div>
             </div>
           </td>
-          <td>
+          <td class="col-team-standalone">
             <div style="font-size: 0.82rem; color: var(--text-secondary);">
               ${t.drivers.join(' • ')}
             </div>
@@ -265,11 +280,11 @@ const StandingsView = {
       <table class="standings-table">
         <thead>
           <tr>
-            <th style="width: 60px; text-align: center;">Pos</th>
-            <th style="width: 70px; text-align: center;">Nº</th>
-            <th>Equipe</th>
-            <th>Pilotos da Dupla</th>
-            <th style="width: 160px; text-align: right;">Pontos C/ Descarte</th>
+            <th style="width: 48px; text-align: center;">Pos</th>
+            <th style="width: 50px; text-align: center;" class="col-team-standalone">Nº</th>
+            <th>Equipe & Dupla</th>
+            <th class="col-team-standalone">Pilotos</th>
+            <th style="width: 110px; text-align: right;">C/ Descarte</th>
           </tr>
         </thead>
         <tbody>

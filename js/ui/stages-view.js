@@ -104,7 +104,7 @@ const StagesView = {
           </div>
           <button class="btn-primary" onclick="SheetModal.open('g1')">
             ${Icons.table(15)}
-            <span>Abrir Planilha Completa</span>
+            <span>Planilha Oficial</span>
           </button>
         </div>
 

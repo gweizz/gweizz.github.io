@@ -12,12 +12,12 @@ cd /d "c:\0 - Projetos\Sites\Pangares"
 
 git add -A
 git commit -m "Deploy Campeonato Pangare de Kart Oficial - 54 Campeonato (2026/2)" 2>nul
-git branch -M main
+git branch -M gh-pages
 git remote set-url origin https://github.com/gweizz/gweizz.github.io.git
 
 echo.
 echo Realizando o push (substituindo arquivos antigos)...
-git push -u origin main --force
+git push -u origin gh-pages --force
 
 echo.
 if %ERRORLEVEL% equ 0 (

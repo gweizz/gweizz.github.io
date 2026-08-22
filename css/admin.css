@@ -1,0 +1,236 @@
+/* ==========================================================================
+   ADMIN & OCR IMPORTER STYLING - CAMPEONATO PANGARÉ DE KART
+   Interface administrativa funcional, sóbria e sem emojis.
+   ========================================================================== */
+
+.admin-modal-container {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  width: 95vw;
+  max-width: 1180px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.admin-modal-header {
+  padding: 14px 20px;
+  background: var(--bg-table-header);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-modal-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Upload & Dropzone Area */
+.upload-dropzone {
+  border: 1px dashed var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 24px 16px;
+  text-align: center;
+  background: var(--bg-primary);
+  cursor: pointer;
+  position: relative;
+  transition: border-color var(--transition-fast);
+}
+
+.upload-dropzone:hover, .upload-dropzone.dragover {
+  border-color: var(--accent-primary);
+  background: var(--bg-tertiary);
+}
+
+.dropzone-icon {
+  margin-bottom: 8px;
+  color: var(--text-muted);
+}
+
+.dropzone-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.dropzone-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.dropzone-file-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Form Controls */
+.ocr-config-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
+}
+
+/* Progress Indicator */
+.ocr-progress-box {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xs);
+  padding: 12px 16px;
+  margin: 16px 0;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border-subtle);
+}
+
+.ocr-progress-box.active {
+  display: flex;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-medium);
+  border-top-color: var(--accent-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Workspace Preview */
+.ocr-result-workspace {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.image-preview-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.image-preview-card img {
+  width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  background: #000;
+  border-radius: var(--radius-xs);
+}
+
+.review-table-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.review-table th {
+  background: var(--bg-table-header);
+  padding: 8px 10px;
+  text-align: left;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.review-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.input-pos {
+  width: 50px;
+  text-align: center;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  padding: 4px 2px;
+}
+
+.input-obs {
+  width: 70px;
+  text-align: center;
+  font-weight: 600;
+  padding: 4px 2px;
+}
+
+/* Sample Images Quick Test Bar */
+.sample-images-bar {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sample-badge-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sample-badge-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+@media (max-width: 900px) {
+  .ocr-result-workspace {
+    grid-template-columns: 1fr;
+  }
+}
